@@ -3,7 +3,7 @@ import DoctorContext from '../../context/doctorActions/DoctorContext';
 const CreatePatientHistory = ({patientId}) => {
 
     const doctorContext = useContext(DoctorContext);
-    const {getPatietHistory} = doctorContext
+    const {CreatePatientHistory , newHistoryError , newHistory} = doctorContext
 
     console.log(patientId)
     const [state , setState ] = useState({
@@ -21,8 +21,12 @@ const CreatePatientHistory = ({patientId}) => {
 
     const onSubmit = (e)=> {
         e.preventDefault() ; 
-           
-        getPatietHistory(patient)
+        CreatePatientHistory({
+            patient ,
+            illness,
+            drug,
+            quantity
+        })
     }
     return (
        
@@ -35,6 +39,12 @@ const CreatePatientHistory = ({patientId}) => {
                 
                 <button type='submit'>Submit</button>           
             </form>
+               {newHistoryError !== null && 
+               <div>{newHistoryError}</div>
+               }
+               {newHistory !== null && 
+                <div>{newHistory}</div>
+               }
          </div>
     )
 }

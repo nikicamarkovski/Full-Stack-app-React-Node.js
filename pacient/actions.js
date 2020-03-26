@@ -192,20 +192,32 @@ GetPatientByEmailQuery = (email) => {
     })
 };
 
+forLoginQuery = (email) => {
+    const query = 'select * from patient where email =?';
+    return new Promise((resolve , reject)=> {
+       db.query(query , [email] , (error , results , fields)=>{
+
+        if(error) reject(error);
+        else resolve(results)
+       })
+    })
+}
+
 Login = async (req, res) => {
     let pass = req.body.password;
     let email = req.body.email;
+ 
        
     try {
         let user;
         let doctor = await doctors.GetAllDoctorsByEmailQuery(email);
-        let patient = await GetPatientByEmailQuery(email);
-      
+        let patient = await forLoginQuery(email);
+        console.log(patient);
             let login = loginLogic(user, patient, doctor, pass);
             res.json(login).status(200);
 
     } catch (error) {
-        console.log(error.message)
+        
         res.status(404).json(error.message);
 
     }

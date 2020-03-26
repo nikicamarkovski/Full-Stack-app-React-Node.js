@@ -5,7 +5,12 @@ import {
     SET_ERROR ,
     CREATE_PATIENT ,
     CLEAR_ERRORS ,
-    GET_HISTORY
+    GET_HISTORY,
+    GET_OWN_PATIENTS,
+    NUMBER_OF_MEDICATION ,
+    ENTER_MEDICATION ,
+    CREATE_HISTORY ,
+    NEW_HISTORY_ERROR
 } from '../types';
 
 
@@ -28,7 +33,7 @@ export default (state , action) => {
              return {
                  ... state ,
                 
-                 patients: state.patients.filter(contact => contact.id != action.payload)
+                 ownPatients: state.ownPatients.filter(contact => contact.id != action.payload)
                
              }
         case SET_ERROR :
@@ -54,6 +59,36 @@ export default (state , action) => {
             ...state,
             history : action.payload
         }
+
+        case GET_OWN_PATIENTS : 
+            return {
+                ...state ,
+                ownPatients : action.payload
+
+            }
+
+        case NUMBER_OF_MEDICATION : 
+            return {
+                ...state , 
+                numberOfMedication : action.payload
+            }
+
+        case ENTER_MEDICATION : 
+            return {
+                ...state ,
+                medication : action.payload
+            }
+         case CREATE_HISTORY :
+             return {
+                 ...state ,
+                 newHistory : action.payload
+             }
+
+        case NEW_HISTORY_ERROR :
+            return {
+                ...state ,
+                newHistoryError : action.payload
+            }
     }
      
 

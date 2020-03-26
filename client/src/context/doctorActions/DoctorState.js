@@ -10,9 +10,15 @@ import {
     SET_ERROR ,
     CREATE_PATIENT ,
     CLEAR_ERRORS ,
-    GET_HISTORY
+    GET_HISTORY , 
+    CREATE_HISTORY, 
+    GET_OWN_PATIENTS,
+    NUMBER_OF_MEDICATION ,
+    ENTER_MEDICATION ,
+    NEW_HISTORY_ERROR
 
 } from '../types';
+
 
 
 const DoctorState = props => {
@@ -21,8 +27,12 @@ const DoctorState = props => {
         error : null ,
         patientById : null ,
         response : null ,
-        history : null
-
+        history : null,
+        newHistory : null ,
+        ownPatients : null ,
+        numberOfMedication  : null,
+        medication : null,
+        newHistoryError : null
     };
 
     const[state, dispach] = useReducer(DoctorReducer, initialState);
@@ -55,6 +65,7 @@ const DoctorState = props => {
     }
 
     const deletePatient = async (id)=> {
+        console.log(id);
         const config = {
             headers : {
               'Content-Type' : 'application/json'
@@ -117,6 +128,73 @@ const DoctorState = props => {
             
         }
     }
+
+    const CreatePatientHistory = async (formData) => {
+        const config = {
+            headers : {
+              'Content-Type' : 'application/json'
+            }
+        }
+
+        try {
+            const res = await axios.post('/patients/history' , formData , config)
+                
+            dispach({
+                type : CREATE_HISTORY,
+                payload : res.data
+                 
+            })
+        } catch (error) {
+            dispach({
+                type : NEW_HISTORY_ERROR,
+                payload : error.response.data.error.message
+            })
+        }
+    }
+
+  const  getOwnPatients = async () => {
+      try {
+          const res = await axios.get('/doctors/patients');
+            dispach({
+                type:GET_OWN_PATIENTS,
+                payload : res.data
+            })
+      } catch (error) {
+          
+      }
+  }
+
+  const getNumberOfMedications = async (name) => {
+      try {
+          const res = await axios.get(`/drugs/${name}`);
+          dispach({
+              type: NUMBER_OF_MEDICATION ,
+              payload : res.data
+          })
+      } catch (error) {
+          
+      }
+  }
+
+ const postDrugs = async (formData) => {
+    const config = {
+        headers : {
+          'Content-Type' : 'application/json'
+        }
+    }
+    try {
+        const res = await axios.post('/order' , formData , config);
+        dispach({
+            type : ENTER_MEDICATION ,
+            payload : res.data
+
+        })
+        console.log(res.data)
+    } catch (error) {
+        
+    }
+ }
+
     return ( 
     <DoctorContext.Provider
     value={{
@@ -125,13 +203,22 @@ const DoctorState = props => {
         patientById : state.patientById,
         response : state.response,
         history : state.history,
+        ownPatients : state.ownPatients,
+        numberOfMedication : state.numberOfMedication,
+        medication : state.medication,
+        newHistory : state.newHistory,
+        newHistoryError : state.newHistoryError,
 
         getPatients,
         getPatientById,
         deletePatient ,
         createNewPatient ,
         getPatietHistory,
-        clearError
+        clearError ,
+        getOwnPatients,
+        getNumberOfMedications,
+        postDrugs , 
+        CreatePatientHistory
 
 
     }}

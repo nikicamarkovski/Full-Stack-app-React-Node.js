@@ -7,8 +7,9 @@ import Patient from '../../patientID/Patient'
 import GetPatientHistory from '../../getHistory/GetPatientHistory'
 import CreateNewPatient from '../../createNewPatient/createNewPatient';
 import CreatePatientHistory from '../../createHistory/CreatePatientHistory';
-
-
+import GetOwnPatients from '../../getOnwPatients/GetOwnPatients';
+import GetNumberOfMedications from '../../getNumberOfMedications/GetNumberOfMedications';
+import EnterMedicine from '../../enterMedicine/EnterMedicine';
  const DoctorHomePage = () => {
      const authContext = useContext(AuthContext);
      const doctorContext = useContext(DoctorContext);
@@ -56,6 +57,23 @@ import CreatePatientHistory from '../../createHistory/CreatePatientHistory';
          })
      }
 
+     const getOwnPatients = () => {
+        setState({show : 'getAllOwnPatients'})
+        doctorContext.getOwnPatients()
+     }
+
+     const getNumberOfMedications = () => {
+        setState({
+            show : 'GetNumberOfMedications'
+        })
+     }
+
+     const enterMedicine = () => {
+         setState({
+
+             show: 'EnterMedicine'
+         })
+     }
         const onChange = (e) => {
         
          setState({...state , [e.target.name]:e.target.value})
@@ -73,6 +91,9 @@ import CreatePatientHistory from '../../createHistory/CreatePatientHistory';
             <div onClick={createPatient}>Create new patient</div>
             <div onClick={createHistory}>Create patient history</div>
             <div onClick={getHistory}> Get History of Patient</div>
+            <div onClick={getOwnPatients}>Get Onw Patients</div>
+            <div onClick={getNumberOfMedications}>Get Number Of Medication</div>
+            <div onClick={enterMedicine}>Enter Medicine</div>
          {state.show === 'showAllPatients' && <Patients/>}
          {state.show === 'getHistory' &&  <GetPatientHistory/>}
           {state.show ==='showIdForm' &&<div> <form onSubmit={onSubmit}>
@@ -81,6 +102,9 @@ import CreatePatientHistory from '../../createHistory/CreatePatientHistory';
           </form> <Patient/> </div>}
             {state.show === 'createPatient' && <CreateNewPatient/>}
             {state.show === 'createHistory' && <CreatePatientHistory/>}
+            {state.show === 'getAllOwnPatients' && <GetOwnPatients/>}
+            {state.show === 'GetNumberOfMedications' && <GetNumberOfMedications/>}
+            {state.show === 'EnterMedicine' && <EnterMedicine/>}
         </div>
     )
 }

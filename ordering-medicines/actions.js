@@ -40,7 +40,7 @@ GetOrder = async (req , res) =>{
     
         await GetOrderQuery(body);
         await UpdateDrugsQuery(body.quantity , body.name)
-        res.send("You Ordered " + body.name + " quantity " + body.quantity).status(200);
+        res.json("You Ordered " + body.name + " quantity " + body.quantity).status(200);
     } catch (error) {
         res.send(error).status(500);
     }
@@ -49,7 +49,7 @@ GetOrder = async (req , res) =>{
 CancelOrderQuery=(id) => {
     
     const query =  'select * from orders where order_id = ?';
-return new Promise ((resolve , reject) =>{
+        return new Promise ((resolve , reject) =>{
     db.query(query ,[id],(error , results , fields)=>{
          if(error) reject(error);
          else resolve(results);
