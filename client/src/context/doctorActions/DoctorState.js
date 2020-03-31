@@ -15,7 +15,9 @@ import {
     GET_OWN_PATIENTS,
     NUMBER_OF_MEDICATION ,
     ENTER_MEDICATION ,
-    NEW_HISTORY_ERROR
+    NEW_HISTORY_ERROR ,
+    FILTER_PATIENTS , 
+    CLEAR_FILTER
 
 } from '../types';
 
@@ -32,7 +34,8 @@ const DoctorState = props => {
         ownPatients : null ,
         numberOfMedication  : null,
         medication : null,
-        newHistoryError : null
+        newHistoryError : null ,
+        filtered : null
     };
 
     const[state, dispach] = useReducer(DoctorReducer, initialState);
@@ -83,6 +86,23 @@ const DoctorState = props => {
         
         
     }
+
+    const filterPatients = (text) => {
+        console.log(text);
+        dispach({
+            type : FILTER_PATIENTS,
+            payload : text
+        })
+        console.log(state.filtered)
+    }
+
+    const clearFilter = () => {
+        dispach({
+            type : CLEAR_FILTER
+        })
+       
+    }
+
     const createNewPatient =async (formData)=>{
         const config = {
             headers : {
@@ -98,7 +118,7 @@ const DoctorState = props => {
            })
            console.log(state.response);
        } catch (error) {
-           /// da se koregira vo backendot za error da vrakja 
+          
            
            dispach({
                type:SET_ERROR,
@@ -112,6 +132,7 @@ const DoctorState = props => {
         dispach({
             type : CLEAR_ERRORS
         })
+      
     }
 
     const getPatietHistory =async (id) => {
@@ -208,6 +229,7 @@ const DoctorState = props => {
         medication : state.medication,
         newHistory : state.newHistory,
         newHistoryError : state.newHistoryError,
+        filtered : state.filtered ,
 
         getPatients,
         getPatientById,
@@ -218,7 +240,9 @@ const DoctorState = props => {
         getOwnPatients,
         getNumberOfMedications,
         postDrugs , 
-        CreatePatientHistory
+        CreatePatientHistory , 
+        filterPatients ,
+        clearFilter
 
 
     }}

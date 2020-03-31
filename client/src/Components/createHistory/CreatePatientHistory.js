@@ -1,5 +1,6 @@
 import React, { useState , useContext } from 'react'
 import DoctorContext from '../../context/doctorActions/DoctorContext';
+
 const CreatePatientHistory = ({patientId}) => {
 
     const doctorContext = useContext(DoctorContext);

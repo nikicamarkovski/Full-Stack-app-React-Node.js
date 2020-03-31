@@ -1,3 +1,9 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -12,4 +18,62 @@
 }
 li {
     list-style-type: none;
+}
+
+.doctor-NavBar {
+ 
+  
+    
+    width : 100%;
+    display: flex;
+}
+
+.static-navBar {
+    width: 20%;
+    background-color: rgba(146, 138, 190, 0.856);
+   height: 100vh;
+ 
+}
+
+
+.static-navBar div {
+
+    padding: 10px;
+    width : 100%;
+    text-align: center;
+  
+}
+
+.static-navBar div:hover {
+    background-color: aqua;
+}
+
+
+.response {
+    display: flex;
+   width:80%;
+    flex-wrap: wrap;
+}
+
+.response div {
+   
+    padding : 20px;
+}
+.patient-items {
+    display: flex;
+    flex-wrap: wrap;
+};
+
+.patient {
+    width:30%;
+}
+
+.show {
+    background-color: aqua;
+}
+
+.filtered{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
 }

@@ -11,9 +11,10 @@ import DoctorContext from '../../context/doctorActions/DoctorContext';
 
     const [state , setState] = useState({
         isVisible : false ,
-        idForDelete : null
+        idForDelete : null ,
+      
     })
-    const {isVisible , idForDelete} = state;
+    const {isVisible , idForDelete } = state;
 
     const deleteId = (e)=> {
         setState({ isVisible: true ,  idForDelete : e.target.id})
@@ -32,7 +33,7 @@ import DoctorContext from '../../context/doctorActions/DoctorContext';
         setState({isVisible : false})
     }
     return (
-        <div>
+        <div style ={Style}>
         <p>{id}</p>
         <p>{name}</p>
         <p>{surname}</p>
@@ -46,6 +47,11 @@ import DoctorContext from '../../context/doctorActions/DoctorContext';
         </div>
        
     )
+  
+}
+
+const Style = {
+    width : '50%'
   
 }
 

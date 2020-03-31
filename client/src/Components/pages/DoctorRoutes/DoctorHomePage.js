@@ -85,15 +85,18 @@ import EnterMedicine from '../../enterMedicine/EnterMedicine';
             getPatientById(id);
         }
     return (
-        <div>
-            <div onClick={getAllPatients}>get all patients</div>
-            <div onClick={showId}>Get Patient by ID</div>
-            <div onClick={createPatient}>Create new patient</div>
-            <div onClick={createHistory}>Create patient history</div>
-            <div onClick={getHistory}> Get History of Patient</div>
-            <div onClick={getOwnPatients}>Get Onw Patients</div>
-            <div onClick={getNumberOfMedications}>Get Number Of Medication</div>
-            <div onClick={enterMedicine}>Enter Medicine</div>
+        <div className="doctor-NavBar">
+            <div className ="static-navBar">
+            <div onClick={getAllPatients} className={show === 'showAllPatients' ? 'show' : 'hide'}>get all patients</div>
+            <div onClick={showId} className={show === 'showIdForm' ? 'show' : 'hide'}>Get Patient by ID</div>
+            <div onClick={createPatient} className={show === 'createPatient' ? 'show' : 'hide'}>Create new patient</div>
+            <div onClick={createHistory} className={show === 'createHistory' ? 'show' : 'hide'}>Create patient history</div>
+            <div onClick={getHistory} className={show === 'getHistory' ? 'show' : 'hide'}> Get History of Patient</div>
+            <div onClick={getOwnPatients} className={show === 'getAllOwnPatients' ? 'show' : 'hide'}>Get Onw Patients</div>
+            <div onClick={getNumberOfMedications} className={show === 'GetNumberOfMedications' ? 'show' : 'hide'}>Get Number Of Medication</div>
+            <div onClick={enterMedicine} className={show === 'EnterMedicine' ? 'show' : 'hide'}>Enter Medicine</div>
+            </div>
+            <div className="response">        
          {state.show === 'showAllPatients' && <Patients/>}
          {state.show === 'getHistory' &&  <GetPatientHistory/>}
           {state.show ==='showIdForm' &&<div> <form onSubmit={onSubmit}>
@@ -105,9 +108,13 @@ import EnterMedicine from '../../enterMedicine/EnterMedicine';
             {state.show === 'getAllOwnPatients' && <GetOwnPatients/>}
             {state.show === 'GetNumberOfMedications' && <GetNumberOfMedications/>}
             {state.show === 'EnterMedicine' && <EnterMedicine/>}
+            </div>
+
         </div>
     )
 }
 
-
+const Style = {
+    color:'red'
+}
 export default DoctorHomePage;

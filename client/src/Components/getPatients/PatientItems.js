@@ -8,7 +8,7 @@ import React, { useState, useContext } from 'react'
 
     
     return (
-        <div>
+        <div style={Style}>
         <p>{id}</p>
         <p>{name}</p>
         <p>{surname}</p>
@@ -21,3 +21,8 @@ import React, { useState, useContext } from 'react'
 }
 
 export default PatientItems;
+
+const Style = {
+    width : '30%',
+  
+}

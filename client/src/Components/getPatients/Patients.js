@@ -8,7 +8,7 @@ import PatientItems from './PatientItems';
      const {patients} = doctorContext
      console.log(patients);
     return (
-        <div>
+        <div className='patient-items'>
             {patients !== null && patients.map(patient=>(
                   <PatientItems key={patient.id} patient={patient}/>  
             ))}

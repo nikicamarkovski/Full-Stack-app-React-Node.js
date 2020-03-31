@@ -120,8 +120,9 @@ DetelePatientQuery = (id) => {
 };
 DetelePatient = async (req, res) => {
     try {
+        console.log(req.params.id)
         const patient = await GetSpecificPatientQuery(req.params.id);
-
+        console.log(patient);
         let tokenData = jwt.verify(req.token, 'login', (error, authorizedData) => {
             return authorizedData
         });

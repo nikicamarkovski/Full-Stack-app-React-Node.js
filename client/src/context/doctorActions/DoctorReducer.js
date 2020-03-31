@@ -10,7 +10,9 @@ import {
     NUMBER_OF_MEDICATION ,
     ENTER_MEDICATION ,
     CREATE_HISTORY ,
-    NEW_HISTORY_ERROR
+    NEW_HISTORY_ERROR , 
+    FILTER_PATIENTS , 
+    CLEAR_FILTER
 } from '../types';
 
 
@@ -88,6 +90,20 @@ export default (state , action) => {
             return {
                 ...state ,
                 newHistoryError : action.payload
+            }
+
+        case FILTER_PATIENTS : 
+        return {
+            ...state,
+            filtered : state.ownPatients.filter((patient)=>{
+                return patient.name.includes(action.payload) || patient.email.includes(action.payload)
+            })
+        }
+        
+        case CLEAR_FILTER :
+            return {
+                ...state ,
+                filtered : null
             }
     }
      
