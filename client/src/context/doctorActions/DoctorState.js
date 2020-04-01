@@ -17,7 +17,8 @@ import {
     ENTER_MEDICATION ,
     NEW_HISTORY_ERROR ,
     FILTER_PATIENTS , 
-    CLEAR_FILTER
+    CLEAR_FILTER,
+    ID_ERROR
 
 } from '../types';
 
@@ -35,7 +36,8 @@ const DoctorState = props => {
         numberOfMedication  : null,
         medication : null,
         newHistoryError : null ,
-        filtered : null
+        filtered : null ,
+        idError : null
     };
 
     const[state, dispach] = useReducer(DoctorReducer, initialState);
@@ -63,6 +65,10 @@ const DoctorState = props => {
 
             })
         } catch (error) {
+            dispach({
+                type : ID_ERROR , 
+                payload : error.response.data.error.message
+            })
             
         }
     }
@@ -76,6 +82,7 @@ const DoctorState = props => {
         }
        try {
            const res = await axios.delete(`/patients/${id}` , config);
+           console.log(res.data);
            dispach({
             type : DELETE_PATIENT,
             payload : id
@@ -230,6 +237,7 @@ const DoctorState = props => {
         newHistory : state.newHistory,
         newHistoryError : state.newHistoryError,
         filtered : state.filtered ,
+        idError : state.idError,
 
         getPatients,
         getPatientById,

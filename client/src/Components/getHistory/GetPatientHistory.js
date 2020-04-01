@@ -27,7 +27,7 @@ import PatientHistoryItems from './PatientHistoryItems';
         <div>
             <form onSubmit={onSubmit}>
             <input text='id' name='id' value={id} onChange={onChange}></input>
-            <buton type='submit'>Submit</buton>
+            <button type='submit'>Submit</button>
             </form>
             
             {history !== null && 

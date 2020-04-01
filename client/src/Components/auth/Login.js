@@ -53,23 +53,23 @@ import AuthContext from '../../context/auth/AuthContext'
     return (
         <div>
             
-             <div>
+             <div className="loginMenu">
             <h1>
             Account <span>Log in </span>
             </h1>
-            <form onSubmit={onSubmit}>
+            <form onSubmit={onSubmit} className="loginForm">
            
-            <div>
+            <div className='email'>
                 <label htmlFor='email'>Email</label>
                 <input type='email' name='email' value={email} onChange={onChange}></input>
                 {error === "Wrong  Email" && <span>{error}</span>}</div>
-            <div>
+            <div className='password'>
                 <label htmlFor='password'>Password</label>
                 <input type='password' name='password' value={password} onChange={onChange}></input>
                 {error === "Wrong  Password" && <span>{error}</span>}
             </div>
           
-            <input type='submit' value='Login'/>
+            <input type='submit' value='Login' id='submit'/>
             </form>
         </div>
         </div>

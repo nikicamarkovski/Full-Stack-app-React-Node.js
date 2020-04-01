@@ -12,7 +12,8 @@ import {
     CREATE_HISTORY ,
     NEW_HISTORY_ERROR , 
     FILTER_PATIENTS , 
-    CLEAR_FILTER
+    CLEAR_FILTER ,
+    ID_ERROR
 } from '../types';
 
 
@@ -105,6 +106,12 @@ export default (state , action) => {
                 ...state ,
                 filtered : null
             }
+        
+        case ID_ERROR : 
+            return {
+                ...state,
+                idError : action.payload
+        }
     }
      
 

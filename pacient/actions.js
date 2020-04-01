@@ -37,14 +37,17 @@ GetSpecificPatientQuery = (id) => {
         });
     });
 };
-GetSpecificPatient = async (req, res) => {
+GetSpecificPatient = async (req, res , next) => {
 
     try {
         const specificPatient = await GetSpecificPatientQuery(req.params.id);
 
         if (specificPatient.length == 0) {
 
-            res.send("nema pacient so takvo id").status(403);
+            // res.send("nema pacient so takvo id").status(403);
+            let error = new Error('nema pacient so takvo id');
+            error.status = 403;
+            next(error);
 
         } else {
             res.send(specificPatient).status(200);
