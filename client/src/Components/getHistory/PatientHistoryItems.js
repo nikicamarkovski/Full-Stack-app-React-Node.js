@@ -10,20 +10,14 @@ import React from 'react'
         console.log(props.drug.NameOfDrug)
     }
     return (
-        <div>
-            <ul>
+   
+            <ul className='drugs'>
             {props.drug !==undefined && 
-            <li>{props.drug.NameOfDrug}</li>
-            }
-
-            {props.illness !== undefined &&
-            <li>{props.illness.nameofIllness}</li>
-            }
-            {props.term !== undefined && 
-            <li>{props.term.date}</li>
+            <li> Medication : {props.drug.NameOfDrug}</li>
             }
             </ul>
-        </div>
+          
+       
     )
 }
 

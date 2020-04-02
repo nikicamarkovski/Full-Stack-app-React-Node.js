@@ -1,6 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react'
 import DoctorContext from '../../context/doctorActions/DoctorContext';
 import PatientHistoryItems from './PatientHistoryItems';
+import IllnessItems from './IllnessItems';
+import TermsItems from './TermsItems';
+
  const GetPatientHistory = () => {
     
     const doctorContext = useContext(DoctorContext);
@@ -31,22 +34,22 @@ import PatientHistoryItems from './PatientHistoryItems';
             </form>
             
             {history !== null && 
-            <div>
+            <div className='some'>
             <ul>
                 <li> Name : {history.name}</li>
                 <li>Surname : {history.surname}</li>
                  <li>Age : {history.age}</li>
                  
             </ul>
-                {history.illness.map((elem)=>(
-                    <PatientHistoryItems  illness={elem}/>
-                ))}
-                {history.drugs.map((drug)=>(
-                    <PatientHistoryItems  drug={drug} />
-                ))}
-                {history.terms.map((term)=>(
-                    <PatientHistoryItems  term={term}  />
-                ))}
+            <div className='illness-response'>    {history.illness.map((elem)=>(
+                   <IllnessItems  illness={elem}/>
+                ))} </div>
+               <div className='drugs-response'>   {history.drugs.map((drug)=>(
+                  <PatientHistoryItems  drug={drug} />
+                ))} </div>
+               <div className='terms-response'>    {history.terms.map((term)=>(
+                 <TermsItems  term={term}  /> 
+                ))}</div>
             </div>
             }
            

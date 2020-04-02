@@ -17,11 +17,11 @@ import CreatePatientHistory from '../createHistory/CreatePatientHistory'
     }
     return (
         <div>
-            <p>{id}</p>
-            <p>{name}</p>
-            <p>{surname}</p>
-            <p>{age}</p>
-    <button onClick={setVisible}>{isVisible? 'hide' : 'show' }</button>
+            <p>id : {id}</p>
+            <p>Name : {name}</p>
+            <p>Surname : {surname}</p>
+            <p>Age : {age}</p>
+    <button onClick={setVisible}>{isVisible? 'hide form' : 'show form' }</button>
             {isVisible &&  <CreatePatientHistory patientId = {id}/>}
             
            

@@ -150,3 +150,37 @@ li {
     height : 30px;
     margin-top: 10px;
 }
+
+.some {
+    width: 100%;
+    display: flex;
+
+}
+.illness-response {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.drugs-response {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.terms-response {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.illness {
+    padding-top: 20px;
+}
+.drugs {
+    padding-top: 20px;
+}
+
+.date {
+    padding-top: 20px;
+}
