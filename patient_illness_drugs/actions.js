@@ -1,4 +1,5 @@
 const db = require('../database');
+const moment = require('moment');
 const {Patient , Illness , Drugs} = require('./obj');
 var jwt = require('jsonwebtoken');
 const drugs = require('../Drugs/actions');
@@ -23,6 +24,7 @@ GetHistoryOfPatientQuery = (id) => {
 };
 
 GetHistoryOfPatient =async (req , res) =>  {
+     const m = moment();
         try {
             const result = await GetHistoryOfPatientQuery(req.params.id);
             
@@ -39,9 +41,11 @@ GetHistoryOfPatient =async (req , res) =>  {
             patient.drugs = drugs;
             patient.illness = illness;
             const allTerms = terms.map((x)=>{
-               return new Terms (x.id , x.date);
+                var forat = m.format('YYYY-MM-DD' , x.date);
+             
+               return new Terms (x.id ,forat);
             })
-            console.log(allTerms);
+         
             patient.terms = allTerms;
 
             res.json(patient).status(200);
@@ -129,8 +133,9 @@ GetOwnHistory = async (req, res) => {
         const allTerms = terms.map((x)=>{
             return new Terms (x.id , x.date);
          });
-     
-         patient.terms = allTerms;
+
+         patient.terms = new Date(allTerms);
+        
         patient.drugs = drugs;
         patient.illness = illness;
   

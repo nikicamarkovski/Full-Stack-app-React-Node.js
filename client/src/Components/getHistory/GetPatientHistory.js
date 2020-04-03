@@ -27,7 +27,7 @@ import TermsItems from './TermsItems';
 
    
     return (
-        <div>
+        <div className='div-response'>
             <form onSubmit={onSubmit}>
             <input text='id' name='id' value={id} onChange={onChange}></input>
             <button type='submit'>Submit</button>
