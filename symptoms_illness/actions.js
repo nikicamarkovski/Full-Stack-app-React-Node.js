@@ -27,7 +27,7 @@ Diagnose = async (req , res) => {
    });
    
    patient.illness = illness
-     res.send(patient).status(200);
+     res.json(patient).status(200);
  } catch (error) {
      res.send(error).status(500)
  };

@@ -13,7 +13,8 @@ import {
     NEW_HISTORY_ERROR , 
     FILTER_PATIENTS , 
     CLEAR_FILTER ,
-    ID_ERROR
+    ID_ERROR ,
+    DIAGNOSE
 } from '../types';
 
 
@@ -112,6 +113,11 @@ export default (state , action) => {
                 ...state,
                 idError : action.payload
         }
+        case DIAGNOSE :
+            return {
+                ...state,
+                diagnose : action.payload
+            }
     }
      
 

@@ -35,7 +35,7 @@ import TermsItems from './TermsItems';
             
             {history !== null && 
             <div className='some'>
-            <ul>
+            <ul style={{width:'30%'}}>
                 <li> Name : {history.name}</li>
                 <li>Surname : {history.surname}</li>
                  <li>Age : {history.age}</li>

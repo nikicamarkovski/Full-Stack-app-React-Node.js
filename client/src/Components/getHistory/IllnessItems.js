@@ -3,7 +3,7 @@ import React from 'react'
 
  const IllnessItems = (props) => {
    
-    console.log(props.illness.nameofIllness)
+
     return (
 
       

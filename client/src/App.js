@@ -14,7 +14,7 @@ import DoctroHomePage from './Components/pages/DoctorRoutes/DoctorHomePage';
 import setAuthToken from './utils/setAuthToken'
 
 if(localStorage.token) {
-  console.log(localStorage.token)
+ 
   setAuthToken(localStorage.token)
 }
 class App extends Component {

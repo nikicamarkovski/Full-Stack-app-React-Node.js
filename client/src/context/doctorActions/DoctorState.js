@@ -18,7 +18,8 @@ import {
     NEW_HISTORY_ERROR ,
     FILTER_PATIENTS , 
     CLEAR_FILTER,
-    ID_ERROR
+    ID_ERROR,
+    DIAGNOSE
 
 } from '../types';
 
@@ -37,7 +38,8 @@ const DoctorState = props => {
         medication : null,
         newHistoryError : null ,
         filtered : null ,
-        idError : null
+        idError : null ,
+        diagnose : null
     };
 
     const[state, dispach] = useReducer(DoctorReducer, initialState);
@@ -223,6 +225,18 @@ const DoctorState = props => {
     }
  }
 
+const diagnoseHelper =async (text) => {
+    try {
+        const res= await axios.get(`/patients/diagnose/${text}`);
+        dispach({
+            type : DIAGNOSE,
+            payload : res.data
+        })   
+    } catch (error) {
+        
+    }
+     
+}
     return ( 
     <DoctorContext.Provider
     value={{
@@ -238,6 +252,7 @@ const DoctorState = props => {
         newHistoryError : state.newHistoryError,
         filtered : state.filtered ,
         idError : state.idError,
+        diagnose : state.diagnose ,
 
         getPatients,
         getPatientById,
@@ -250,7 +265,8 @@ const DoctorState = props => {
         postDrugs , 
         CreatePatientHistory , 
         filterPatients ,
-        clearFilter
+        clearFilter ,
+        diagnoseHelper
 
 
     }}

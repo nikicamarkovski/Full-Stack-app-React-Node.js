@@ -33,7 +33,7 @@ checkIsDoctor = (req,res,next)=>{
     let keyWord = Object.keys(data.user)[0];
 
     if (keyWord != 'doctor_id'){
-        var error = new Error('Invalid prijatele')
+        var error = new Error('Invalid token')
         error.status = 404
         next(error);
     }
@@ -46,9 +46,9 @@ checkIsDoctor = (req,res,next)=>{
 checIsPatient = (req , res , next )=> {
     jwt.verify(req.token , 'login', (err , data)=>{
         let keyWord =  Object.keys(data.user)[0];
-        console.log(keyWord);
+     
         if(keyWord != 'id'){
-            var error = new Error("Invalid prijatele")   
+            var error = new Error("Invalid token")   
             res.status(403).next(error);
         } 
        
@@ -59,7 +59,7 @@ checIsPatient = (req , res , next )=> {
 
 Admin = (req , res , next )=> {
     jwt.verify(req.token , 'login', (err , data)=>{
-        console.log(data.user);
+      
         if(data.user.admin != true)  
           res.status(403).send('Invalid authorisation');
         else next();

@@ -10,6 +10,7 @@ import CreatePatientHistory from '../../createHistory/CreatePatientHistory';
 import GetOwnPatients from '../../getOnwPatients/GetOwnPatients';
 import GetNumberOfMedications from '../../getNumberOfMedications/GetNumberOfMedications';
 import EnterMedicine from '../../enterMedicine/EnterMedicine';
+import DiagnoseHelper from '../../diagnoseHelper/DiagnoseHelper';
  const DoctorHomePage = () => {
      const authContext = useContext(AuthContext);
      const doctorContext = useContext(DoctorContext);
@@ -74,6 +75,12 @@ import EnterMedicine from '../../enterMedicine/EnterMedicine';
              show: 'EnterMedicine'
          })
      }
+
+     const diagnoseHelper = () => {
+         setState({
+             show : 'diagnoseHelper'
+         })
+     }
         const onChange = (e) => {
         
          setState({...state , [e.target.name]:e.target.value})
@@ -95,6 +102,7 @@ import EnterMedicine from '../../enterMedicine/EnterMedicine';
             <div onClick={getOwnPatients} className={show === 'getAllOwnPatients' ? 'show' : 'hide'}>Get Onw Patients</div>
             <div onClick={getNumberOfMedications} className={show === 'GetNumberOfMedications' ? 'show' : 'hide'}>Get Number Of Medication</div>
             <div onClick={enterMedicine} className={show === 'EnterMedicine' ? 'show' : 'hide'}>Enter Medicine</div>
+            <div onClick={diagnoseHelper} className={show === 'diagnoseHelper' ? 'show' : 'hide'}>Diagnose Helper</div>
             </div>
             <div className="response">        
          {state.show === 'showAllPatients' && <Patients/>}
@@ -108,6 +116,7 @@ import EnterMedicine from '../../enterMedicine/EnterMedicine';
             {state.show === 'getAllOwnPatients' && <GetOwnPatients/>}
             {state.show === 'GetNumberOfMedications' && <GetNumberOfMedications/>}
             {state.show === 'EnterMedicine' && <EnterMedicine/>}
+            {state.show === 'diagnoseHelper' && <DiagnoseHelper/>}
             </div>
 
         </div>

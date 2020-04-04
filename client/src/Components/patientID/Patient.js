@@ -6,8 +6,7 @@ import PatientItems from './PatientItems'
 const Patient = () => {
     const doctorContext = useContext(DoctorContext);
     const {patientById , idError } = doctorContext;
-    
-    console.log(patientById);
+
     
     return (
         <div>

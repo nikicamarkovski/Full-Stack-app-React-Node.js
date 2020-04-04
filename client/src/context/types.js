@@ -20,4 +20,5 @@ export const ENTER_MEDICATION = 'ENTER_MEDICATION';
 export const NEW_HISTORY_ERROR ='NEW_HISTORY_ERROR'
 export const FILTER_PATIENTS = 'FILTER_PATIENTS'
 export const CLEAR_FILTER = 'CLEAR_FILTER';
-export const ID_ERROR = 'ID_ERROR'
+export const ID_ERROR = 'ID_ERROR';
+export const DIAGNOSE = 'DIAGNOSE';
