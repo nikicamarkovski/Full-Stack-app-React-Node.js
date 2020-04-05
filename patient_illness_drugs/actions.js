@@ -11,7 +11,10 @@ const {GetSpecificPatientQuery} = require('../pacient/actions');
 GetHistoryOfPatientQuery = (id) => {
     const query = 'select * from patient join patient_illness_drugs on patient.id  = patient_illness_drugs.patient_id\
      join illness on patient_illness_drugs.illness_id = illness.id \
-     join drugs on patient_illness_drugs.drug_id = drugs.id where patient.id = ?;'
+     join drugs on patient_illness_drugs.drug_id = drugs.id  \
+     where patient.id = ?;'
+
+    
      return new Promise ((resolve , reject)=>{
         db.query(query ,[id] , (error , results , fields)=>{
 
@@ -41,11 +44,12 @@ GetHistoryOfPatient =async (req , res) =>  {
             patient.drugs = drugs;
             patient.illness = illness;
             const allTerms = terms.map((x)=>{
-                var forat = m.format('YYYY-MM-DD' , x.date);
              
-               return new Terms (x.id ,forat);
+                
+           
+               return new Terms (x.id ,x.date);
             })
-         
+           
             patient.terms = allTerms;
 
             res.json(patient).status(200);

@@ -19,7 +19,11 @@ import {
     FILTER_PATIENTS , 
     CLEAR_FILTER,
     ID_ERROR,
-    DIAGNOSE
+    DIAGNOSE,
+    CREATE_TERM,
+    GET_ALL_TERMS,
+    DELETE_SPECIFIC_TERM,
+    SET_CURRENT
 
 } from '../types';
 
@@ -39,7 +43,10 @@ const DoctorState = props => {
         newHistoryError : null ,
         filtered : null ,
         idError : null ,
-        diagnose : null
+        diagnose : null,
+        createTermResponse : null ,
+        terms : null ,
+        currentDate : null
     };
 
     const[state, dispach] = useReducer(DoctorReducer, initialState);
@@ -125,7 +132,7 @@ const DoctorState = props => {
                type : CREATE_PATIENT ,
                payload : res.data
            })
-           console.log(state.response);
+    
        } catch (error) {
           
            
@@ -225,6 +232,25 @@ const DoctorState = props => {
     }
  }
 
+ const createNewTerm = async (formData) => {
+    
+    const config = {
+        headers : {
+          'Content-Type' : 'application/json'
+        }
+    }
+    try {
+         const res =   await axios.post('/patients/terms' , formData , config);
+        dispach({
+            type : CREATE_TERM,
+            payload: res.data
+        })
+        console.log(state.createTermResponse)
+    } catch (error) {
+        
+    }
+ }
+
 const diagnoseHelper =async (text) => {
     try {
         const res= await axios.get(`/patients/diagnose/${text}`);
@@ -237,6 +263,65 @@ const diagnoseHelper =async (text) => {
     }
      
 }
+
+ const getAllPatientTerms = async (id) => {
+     try {
+         const res = await axios.get(`/patients/${id}/terms`);
+        
+            console.log(res.data.terms);
+         dispach({
+             type: GET_ALL_TERMS,
+             payload: res.data.terms
+         })
+       
+     } catch (error) {
+         console.log(error);
+     }
+ }
+
+ const deleteTerm = async (id) => {
+
+   
+
+   try {
+       await axios.delete(`/patients/${id}/terms`)
+        dispach({
+            type:DELETE_SPECIFIC_TERM,
+            payload : id
+        })
+   } catch (error) {
+       console.log(error);
+   }
+
+ }
+
+ const setCurrent = async (formData) => {
+     try {
+         dispach({
+            type:SET_CURRENT,
+            payload : formData
+         })
+         
+     } catch (error) {
+         
+     }
+      
+ }
+ const changeTerm = async (formData) =>{
+    const config = {
+        headers : {
+          'Content-Type' : 'application/json'
+        }
+    }
+    try {
+        console.log(formData);
+        await axios.patch(`/patients/${formData.patient}/terms/${formData.id}` , formData , config);
+    } catch (error) {
+        
+    }
+ }
+
+
     return ( 
     <DoctorContext.Provider
     value={{
@@ -253,6 +338,9 @@ const diagnoseHelper =async (text) => {
         filtered : state.filtered ,
         idError : state.idError,
         diagnose : state.diagnose ,
+        createTermResponse : state.createTermResponse,
+        terms : state.terms ,
+        currentDate : state.currentDate , 
 
         getPatients,
         getPatientById,
@@ -266,7 +354,12 @@ const diagnoseHelper =async (text) => {
         CreatePatientHistory , 
         filterPatients ,
         clearFilter ,
-        diagnoseHelper
+        diagnoseHelper ,
+        createNewTerm,
+        getAllPatientTerms ,
+        deleteTerm ,
+        setCurrent ,
+        changeTerm
 
 
     }}

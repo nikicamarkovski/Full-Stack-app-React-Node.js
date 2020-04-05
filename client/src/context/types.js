@@ -22,3 +22,7 @@ export const FILTER_PATIENTS = 'FILTER_PATIENTS'
 export const CLEAR_FILTER = 'CLEAR_FILTER';
 export const ID_ERROR = 'ID_ERROR';
 export const DIAGNOSE = 'DIAGNOSE';
+export const CREATE_TERM ='CREATE_TERM';
+export const  GET_ALL_TERMS = 'GET_ALL_TERMS';
+export const DELETE_SPECIFIC_TERM = 'DELETE_SPECIFIC_TERM';
+export const SET_CURRENT = 'SET_CURRENT';

@@ -187,3 +187,9 @@ li {
 .div-response {
     width:100%
 }
+.formshow {
+    display:inline-block;
+}
+.formhide {
+    display: none;
+}

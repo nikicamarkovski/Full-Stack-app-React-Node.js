@@ -19,7 +19,7 @@ GetAllTerms = async (req , res) => {
         let dbPatient = result[0];
         let patient = new Patient(dbPatient.name , dbPatient.surname , dbPatient.age , []);
         let terms = result.map((x)=>{
-            return new Terms(x.pacient_id , x.date);
+            return new Terms(x.id, x.date);
         });
         patient.terms = terms
       
@@ -39,9 +39,11 @@ CreateTermQuery = (term)=> {
 }
 CreateTerm = async (req , res)=> {
     let term = req.body;
+    console.log(term);
     try {
         await CreateTermQuery(term)
-        res.send("the term has been created").status(200);
+        // res.send("the term has been created").status(200);
+        res.json("Term has been created")
     } catch (error) {
         res.send(error).status(500);
     }
@@ -68,6 +70,7 @@ DeteleTerm = async (req , res) => {
 
 
 ChangeTermQuery = (term, patient , id) => {
+    
     const query = 'UPDATE termin SET date = ? WHERE termin.pacient_id = ? and termin.id=?';
     return new Promise ((resolve , reject) => {
         db.query(query , [term , patient , id] , (error , results , fields)=>{

@@ -14,7 +14,11 @@ import {
     FILTER_PATIENTS , 
     CLEAR_FILTER ,
     ID_ERROR ,
-    DIAGNOSE
+    DIAGNOSE,
+    CREATE_TERM ,
+    GET_ALL_TERMS,
+    DELETE_SPECIFIC_TERM ,
+    SET_CURRENT
 } from '../types';
 
 
@@ -118,6 +122,35 @@ export default (state , action) => {
                 ...state,
                 diagnose : action.payload
             }
+        case CREATE_TERM : 
+            return {
+                ...state,
+                createTermResponse : action.payload
+            }
+        case GET_ALL_TERMS :
+           
+            return {
+                ...state ,
+                terms : action.payload
+            }
+
+            case DELETE_SPECIFIC_TERM : 
+           
+                return {
+                    ...state ,
+                    terms : state.terms.filter(term => (term.id !== action.payload))
+                       
+                }
+
+            case SET_CURRENT : 
+                    console.log('dadadadad')
+                return {
+                    ...state,
+                    currentDate : action.payload
+                }
+      
+       default :
+       return state
     }
      
 
