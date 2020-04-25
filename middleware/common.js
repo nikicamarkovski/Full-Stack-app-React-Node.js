@@ -4,7 +4,7 @@ var helper = require('../helper');
 checkToken = (req, res, next) => {
     
     const header = req.headers['authorization'];
-    console.log(header);
+   
       
     if(typeof header !== 'undefined') {
         const bearer = header.split(' ');

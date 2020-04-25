@@ -4,6 +4,7 @@ import './App.css';
 import PatientPrivateRoute from './Components/routing/PatientPrivateRoute';
 import DoctorPrivateRoute from './Components/routing/DoctorPrivateRoute'
 import DoctorState from './context/doctorActions/DoctorState'
+import PatientState from './context/patientActions/PatientState';
 /// Components
 import AuthState from './context/auth/AuthState'
 import Login from './Components/auth/Login';
@@ -24,6 +25,7 @@ class App extends Component {
      <div>
   <AuthState>
     <DoctorState>
+    <PatientState>
    <Router>
      <Navbar/>
         <Switch>
@@ -33,6 +35,7 @@ class App extends Component {
         <DoctorPrivateRoute exact path ='/doctorhome' component ={DoctroHomePage}/>
        </Switch>
     </Router>
+    </PatientState>
     </DoctorState>
  </AuthState>
      </div>

@@ -13,9 +13,10 @@ import TermsItems from '../createNewTerm/Terms/TermsItems';
 
     const [state , setState] = useState({
         historyIsVisible : false,
-        termIsVisible : false
+        termIsVisible : false ,
+        buttonVisible : false
     })
-    const {historyIsVisible , termIsVisible} = state
+    const {historyIsVisible , termIsVisible , buttonVisible} = state
     const historySetVisible = () => {
         setState({
             historyIsVisible : !state.historyIsVisible,
@@ -32,13 +33,20 @@ import TermsItems from '../createNewTerm/Terms/TermsItems';
         const onClick = () => {
             
             getAllPatientTerms(id);
-          
+            setState({
+                buttonVisible : true
+            })
         }
         // useEffect(()=> {
         //     getAllPatientTerms(id);
         // }, [])
        
-     
+     const clearTermState = () => {
+            setState({
+                buttonVisible : false
+            })
+
+     }
     return (
         <div>
             <p>id : {id}</p>
@@ -50,10 +58,14 @@ import TermsItems from '../createNewTerm/Terms/TermsItems';
             <button onClick={termSetVisible}>{termIsVisible ? 'hide form' : 'create term' }</button>
             {termIsVisible &&  <CreateNewTerm patientId = {id}/>}
            <button onClick={onClick}>get all terms</button>
-           {terms !== null && terms.map(term => (
-               <TermsItems term={term} key={term.id}/>
+           
+           { buttonVisible && terms !== null &&   terms.map(term => (
+               <TermsItems term={term} key={term.id}
+               
+               />
+               
            ))}
-       
+       <button onClick={clearTermState} className={!buttonVisible? 'hideButton' : 'showVisible'}>Hide</button>
         </div>
     )
 }

@@ -1,11 +1,11 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState } from 'react'
 import * as moment from 'moment';
 import DoctorContext from '../../../context/doctorActions/DoctorContext';
  const TermsItems = ({term}) => {
 
    
     const doctorContext = useContext(DoctorContext);
-    const {deleteTerm , setCurrent , patientById , changeTerm} = doctorContext;
+    const {deleteTerm , setCurrent , patientById , changeTerm } = doctorContext;
 
 
   let formatDate =  moment(term.date).format('DD/MM/YYYY');
@@ -23,7 +23,7 @@ const [ state , setState] = useState({
     date : ''
 });
 
-const {formVisible , date , name , type} = state
+const {formVisible , date } = state
 
 
 
@@ -49,24 +49,25 @@ const {formVisible , date , name , type} = state
     }
     const onSubmit = (e) => {
         e.preventDefault();
-        // modifySpecificTerm()
+        
         changeTerm({
             id : term.id,
             date: date ,
            patient : patientById[0].id
         });
+        
     }
     return (
         <div>
             {formatDate}
            <button onClick={onClick}>Delete</button>
-           <button onClick={Modify}>Modify</button>
+             <button onClick={Modify}>{formVisible ? "Hide form" : "Modify"}</button>
             
            <form onSubmit={onSubmit} className={formVisible ? "formshow" : "formhide"}>
            <input name='date' onChange={onChange} value={date}></input>
            <button type='submit'>submit</button>
            </form>
-           
+         
         </div>
     )
 }

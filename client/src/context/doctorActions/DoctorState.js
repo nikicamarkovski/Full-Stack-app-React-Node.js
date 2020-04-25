@@ -23,7 +23,9 @@ import {
     CREATE_TERM,
     GET_ALL_TERMS,
     DELETE_SPECIFIC_TERM,
-    SET_CURRENT
+    SET_CURRENT ,
+    HISTORY_ERROR
+    
 
 } from '../types';
 
@@ -46,7 +48,8 @@ const DoctorState = props => {
         diagnose : null,
         createTermResponse : null ,
         terms : null ,
-        currentDate : null
+        currentDate : null ,
+        historyError : null
     };
 
     const[state, dispach] = useReducer(DoctorReducer, initialState);
@@ -109,7 +112,7 @@ const DoctorState = props => {
             type : FILTER_PATIENTS,
             payload : text
         })
-        console.log(state.filtered)
+      
     }
 
     const clearFilter = () => {
@@ -162,8 +165,13 @@ const DoctorState = props => {
           })
 
         } catch (error) {
-            
+           
+            dispach({
+                type : HISTORY_ERROR,
+                payload : error.response.data.error.message
+            })
         }
+      
     }
 
     const CreatePatientHistory = async (formData) => {
@@ -273,6 +281,7 @@ const diagnoseHelper =async (text) => {
              type: GET_ALL_TERMS,
              payload: res.data.terms
          })
+
        
      } catch (error) {
          console.log(error);
@@ -280,8 +289,6 @@ const diagnoseHelper =async (text) => {
  }
 
  const deleteTerm = async (id) => {
-
-   
 
    try {
        await axios.delete(`/patients/${id}/terms`)
@@ -316,6 +323,7 @@ const diagnoseHelper =async (text) => {
     try {
         console.log(formData);
         await axios.patch(`/patients/${formData.patient}/terms/${formData.id}` , formData , config);
+        getAllPatientTerms(formData.patient)
     } catch (error) {
         
     }
@@ -341,6 +349,7 @@ const diagnoseHelper =async (text) => {
         createTermResponse : state.createTermResponse,
         terms : state.terms ,
         currentDate : state.currentDate , 
+        historyError : state.historyError,
 
         getPatients,
         getPatientById,

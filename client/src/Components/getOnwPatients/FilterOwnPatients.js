@@ -23,7 +23,7 @@ import DoctorContext from '../../context/doctorActions/DoctorContext';
     console.log(filtered);
     return (
         <form>
-        <input ref={text} type="text"  placeholder="filter contact" onChange={onChange}></input>
+        <input ref={text} type="text"  placeholder="filter" onChange={onChange}></input>
     </form>
     )
 }

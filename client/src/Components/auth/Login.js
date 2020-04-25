@@ -62,6 +62,7 @@ import AuthContext from '../../context/auth/AuthContext'
             <div className='email'>
                 <label htmlFor='email'>Email</label>
                 <input type='email' name='email' value={email} onChange={onChange}></input>
+             
                 {error === "Wrong  Email" && <span>{error}</span>}</div>
             <div className='password'>
                 <label htmlFor='password'>Password</label>

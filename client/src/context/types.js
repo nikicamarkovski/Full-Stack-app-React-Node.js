@@ -1,4 +1,4 @@
-
+// Auth types
 export const USER_LOADED = 'USER_LOADED';
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -6,7 +6,7 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
-
+// Doctor types
 export const CREATE_HISTORY = 'CREATE_HISTORY'
 export const GET_PATIENTS = 'GET_PATIENTS';
 export const GET_PATIENTS_BY_ID = 'GET_PATIENTS_BY_ID';
@@ -26,3 +26,7 @@ export const CREATE_TERM ='CREATE_TERM';
 export const  GET_ALL_TERMS = 'GET_ALL_TERMS';
 export const DELETE_SPECIFIC_TERM = 'DELETE_SPECIFIC_TERM';
 export const SET_CURRENT = 'SET_CURRENT';
+export const HISTORY_ERROR = 'HISTORY_ERROR';
+
+// Patient Types
+export const GET_OWN_HISTORY = 'GET_OWN_HISTORY';

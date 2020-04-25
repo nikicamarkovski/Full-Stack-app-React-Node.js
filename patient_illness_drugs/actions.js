@@ -26,13 +26,16 @@ GetHistoryOfPatientQuery = (id) => {
     });
 };
 
-GetHistoryOfPatient =async (req , res) =>  {
-     const m = moment();
+GetHistoryOfPatient =async (req , res , next) =>  {
+    
         try {
             const result = await GetHistoryOfPatientQuery(req.params.id);
             
+            if(result.length != 0 ) {
+
+                console.log("daddada")
             const terms = await GetOwnTerms(result[0].id);
-             console.log(terms);
+             
             const dbPatient = result[0];
             const patient = new Patient(dbPatient.name , dbPatient.surname , dbPatient.age , [] , [], []);
             const drugs = result.map((x)=>{
@@ -53,6 +56,12 @@ GetHistoryOfPatient =async (req , res) =>  {
             patient.terms = allTerms;
 
             res.json(patient).status(200);
+        } else {
+            let error = new Error('the patient does not exist');
+                error.status = 404
+                console.log(error);
+                next(error)
+        }
         } catch (error) {
             res.send(error).status(500);
         }

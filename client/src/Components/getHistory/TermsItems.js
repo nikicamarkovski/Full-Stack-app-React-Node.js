@@ -1,11 +1,13 @@
 import React from 'react'
-
+import * as moment from 'moment';
  const TermsItems = (props) => {
+
+    let formatDate =  moment(props.term.date).format('DD/MM/YYYY');
     return (
         
             <ul className='date'>
             {props.term !== undefined && 
-            <li> Date : {props.term.date}</li>
+            <li> Date : {formatDate}</li>
             }
            </ul>
     

@@ -7,7 +7,7 @@ import TermsItems from './TermsItems';
  const GetPatientHistory = () => {
     
     const doctorContext = useContext(DoctorContext);
-    const {getPatietHistory ,history} = doctorContext;
+    const {getPatietHistory ,history , historyError , clearError} = doctorContext;
     
     const [state , setState] = useState({
          id : ''
@@ -22,7 +22,9 @@ import TermsItems from './TermsItems';
      }
      const onSubmit = (e) => {
             e.preventDefault();
-            getPatietHistory(id)
+            clearError();
+            getPatietHistory(id);
+           
      }
 
    
@@ -32,7 +34,7 @@ import TermsItems from './TermsItems';
             <input text='id' name='id' value={id} onChange={onChange}></input>
             <button type='submit'>Submit</button>
             </form>
-            
+             { historyError !== null && <div>{historyError}</div>}
             {history !== null && 
             <div className='some'>
             <ul style={{width:'30%'}}>

@@ -18,7 +18,8 @@ import {
     CREATE_TERM ,
     GET_ALL_TERMS,
     DELETE_SPECIFIC_TERM ,
-    SET_CURRENT
+    SET_CURRENT ,
+    HISTORY_ERROR
 } from '../types';
 
 
@@ -59,7 +60,8 @@ export default (state , action) => {
         case CLEAR_ERRORS :
             return {
                 ...state ,
-                error : null
+                error : null,
+                historyError:null
             } 
 
         case GET_HISTORY : 
@@ -143,10 +145,17 @@ export default (state , action) => {
                 }
 
             case SET_CURRENT : 
-                    console.log('dadadadad')
+                 
                 return {
                     ...state,
                     currentDate : action.payload
+                }
+            
+            case HISTORY_ERROR : 
+               
+                return {
+                    ...state,
+                    historyError : action.payload
                 }
       
        default :
