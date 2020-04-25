@@ -14,7 +14,7 @@ import DiagnoseHelper from '../../diagnoseHelper/DiagnoseHelper';
  const DoctorHomePage = () => {
      const authContext = useContext(AuthContext);
      const doctorContext = useContext(DoctorContext);
-    const {getPatientById , patientById} = doctorContext;
+    const {getPatientById , patientById , clearError} = doctorContext;
      const [state , setState] = useState({
     
         show : '',
@@ -88,7 +88,7 @@ import DiagnoseHelper from '../../diagnoseHelper/DiagnoseHelper';
         }
         const onSubmit = (e)=>{
             e.preventDefault();
-
+            clearError();
             getPatientById(id);
         }
     return (

@@ -61,7 +61,8 @@ export default (state , action) => {
             return {
                 ...state ,
                 error : null,
-                historyError:null
+                historyError:null,
+                idError : null
             } 
 
         case GET_HISTORY : 
