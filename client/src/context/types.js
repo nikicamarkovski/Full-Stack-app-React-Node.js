@@ -27,6 +27,6 @@ export const  GET_ALL_TERMS = 'GET_ALL_TERMS';
 export const DELETE_SPECIFIC_TERM = 'DELETE_SPECIFIC_TERM';
 export const SET_CURRENT = 'SET_CURRENT';
 export const HISTORY_ERROR = 'HISTORY_ERROR';
-
+export const MEDICATIONS = 'MEDICATIONS';
 // Patient Types
 export const GET_OWN_HISTORY = 'GET_OWN_HISTORY';

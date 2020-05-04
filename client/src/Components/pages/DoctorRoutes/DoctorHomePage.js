@@ -14,7 +14,7 @@ import DiagnoseHelper from '../../diagnoseHelper/DiagnoseHelper';
  const DoctorHomePage = () => {
      const authContext = useContext(AuthContext);
      const doctorContext = useContext(DoctorContext);
-    const {getPatientById , patientById , clearError} = doctorContext;
+    const {getPatientById , patientById , clearError , NameOfMedications} = doctorContext;
      const [state , setState] = useState({
     
         show : '',
@@ -67,6 +67,7 @@ import DiagnoseHelper from '../../diagnoseHelper/DiagnoseHelper';
         setState({
             show : 'GetNumberOfMedications'
         })
+        NameOfMedications();
      }
 
      const enterMedicine = () => {

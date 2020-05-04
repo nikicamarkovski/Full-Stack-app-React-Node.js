@@ -10,6 +10,7 @@ NumberOfMedicationsQuery = (name) => {
 };
 NumberOfMedications = async (req , res)=>{
         try {
+     
             const result = await NumberOfMedicationsQuery(req.params.name);
             res.send(result).status(200);
         } catch (error) {
@@ -37,9 +38,31 @@ GetDrugQuantity = (name)=> {
     });
 }
 
+GetNameOFDrugsQuery = () => {
+   
+    const query = 'select drug_name from drugs';
+    return new Promise((resolve , reject)=>{
+        db.query(query ,(error , result , fields)=>{
+            if(error) reject(error);
+            else resolve(result);
+        });
+     });
+}
+
+GetNameOfMedications = async (req , res)=>{
+    try {
+ 
+        const result = await GetNameOFDrugsQuery();
+        res.json(result).status(200);
+    } catch (error) {
+        res.json(error).status(500);
+    }
+};
 
 module.exports = {
     NumberOfMedications ,
     PatientsDrugQuery ,
-    GetDrugQuantity
+    GetDrugQuantity,
+    GetNameOfMedications
+   
 }

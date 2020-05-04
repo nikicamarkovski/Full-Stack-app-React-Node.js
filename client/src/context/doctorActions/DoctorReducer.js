@@ -19,7 +19,8 @@ import {
     GET_ALL_TERMS,
     DELETE_SPECIFIC_TERM ,
     SET_CURRENT ,
-    HISTORY_ERROR
+    HISTORY_ERROR ,
+    MEDICATIONS
 } from '../types';
 
 
@@ -157,6 +158,12 @@ export default (state , action) => {
                 return {
                     ...state,
                     historyError : action.payload
+                }
+            case MEDICATIONS : 
+            console.log('dada')
+                return {
+                    ...state ,
+                    medications : action.payload
                 }
       
        default :

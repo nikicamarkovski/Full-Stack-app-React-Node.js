@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import {Route , Redirect} from 'react-router-dom'
 import AuthContext from '../../context/auth/AuthContext';
-import jwt from 'jwt-decode'
+import jwt from 'jwt-decode';
+
  const PatientPrivateRoute = ({component:Component , ...rest}) => {
 
     const authContext = useContext(AuthContext);
@@ -23,5 +24,8 @@ import jwt from 'jwt-decode'
     )
 }
 
+
+
+ 
 
 export default PatientPrivateRoute;

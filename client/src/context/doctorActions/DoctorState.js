@@ -24,7 +24,8 @@ import {
     GET_ALL_TERMS,
     DELETE_SPECIFIC_TERM,
     SET_CURRENT ,
-    HISTORY_ERROR
+    HISTORY_ERROR,
+    MEDICATIONS
     
 
 } from '../types';
@@ -49,7 +50,8 @@ const DoctorState = props => {
         createTermResponse : null ,
         terms : null ,
         currentDate : null ,
-        historyError : null
+        historyError : null,
+        medications : null
     };
 
     const[state, dispach] = useReducer(DoctorReducer, initialState);
@@ -60,9 +62,9 @@ const DoctorState = props => {
            dispach({
                type:GET_PATIENTS,
                payload : res.data
-           })
+           });
         } catch (error) {
-            
+            console.log(error);            
         }
     }
 
@@ -211,6 +213,7 @@ const DoctorState = props => {
 
   const getNumberOfMedications = async (name) => {
       try {
+         
           const res = await axios.get(`/drugs/${name}`);
           dispach({
               type: NUMBER_OF_MEDICATION ,
@@ -329,6 +332,20 @@ const diagnoseHelper =async (text) => {
     }
  }
 
+const NameOfMedications = async () => {
+    try {
+        const res = await axios.get('/drugs')
+        // const da = await axios.get('/drugs');
+        dispach({
+            type: MEDICATIONS,
+            payload : res.data
+        })
+        console.log(state.medications);
+        
+    } catch (error) {
+        
+    }
+}
 
     return ( 
     <DoctorContext.Provider
@@ -350,6 +367,7 @@ const diagnoseHelper =async (text) => {
         terms : state.terms ,
         currentDate : state.currentDate , 
         historyError : state.historyError,
+        medications : state.medications,
 
         getPatients,
         getPatientById,
@@ -368,7 +386,8 @@ const diagnoseHelper =async (text) => {
         getAllPatientTerms ,
         deleteTerm ,
         setCurrent ,
-        changeTerm
+        changeTerm,
+        NameOfMedications
 
 
     }}
