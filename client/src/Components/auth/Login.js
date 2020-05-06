@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import AuthContext from '../../context/auth/AuthContext'
+
  const Login = props => {
 
    
@@ -55,6 +56,7 @@ import AuthContext from '../../context/auth/AuthContext'
             
              <div className="loginMenu">
             <h1>
+         
             Account <span>Log in </span>
             </h1>
             <form onSubmit={onSubmit} className="loginForm">

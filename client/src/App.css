@@ -200,3 +200,15 @@ li {
 .showButton {
     display: inline-block;
 }
+
+.dropDown {
+    display: flex;
+    flex-direction: column;
+    background-color:rgba(146, 138, 190, 0.856);
+    width: 67%;
+}
+
+.dropDown  :hover {
+    
+    background-color: aqua;
+}

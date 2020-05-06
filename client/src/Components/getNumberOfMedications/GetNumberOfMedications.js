@@ -38,16 +38,20 @@ import MedicationItems from './MedicationItems'
     return (
         <div>
           <form onSubmit={onSubmit}>
+        
             <input type='text' name='name' placeholder='Name of Medication' value={name} onChange={onChange}></input>
-                  
-            <span onClick={onClick}>name</span>
+            <i  onClick={onClick} class="far fa-caret-square-down"></i>       
+          
+    
             <button type='submit'>Submit</button>
         </form> 
+        <ul className='dropDown'>
         {medications !== null && medications.map((e)=>(
-            <ul onClick={ValueOfDiv} className={medicationsVisibility ? 'showButton' : 'hideButton'}>
-                <li key={e.drug_name}>{e.drug_name}</li>
-            </ul>
+         
+                <li onClick={ValueOfDiv} className={medicationsVisibility ? 'showButton' : 'hideButton'} key={e.drug_name}>{e.drug_name}</li>
+          
         ))} 
+          </ul>
         {numberOfMedication !== null &&
             numberOfMedication.map((item)=>(
                 <MedicationItems key={item.drug_name} item={item}/>
@@ -56,6 +60,7 @@ import MedicationItems from './MedicationItems'
         </div>
     )
 }
+
 
 
 export default GetNumberOfMedications;

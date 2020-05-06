@@ -26,6 +26,7 @@ import AuthContext from '../../context/auth/AuthContext';
         )
     return (
         <div className='navbar'>
+            
             <div className='left'> Hospital Project</div>
             <ul className='links'>
              {isAuthenticated ? authLinks : guestLinks}
